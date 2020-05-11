@@ -1,5 +1,8 @@
 run:
-	python ./manage.py runserver
+	#python ./manage.py runserver
+	export FLASK_ENV=development
+	flask run
+
 
 test:
 	make codequality

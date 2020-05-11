@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'serviceuser'
+      MYSQL_PASSWORD: '0192837465'
+      MYSQL_ROOT_PASSWORD: '0192837465'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mysql-db-volume:/var/lib/mysql
+volumes:
+    mysql-db-volume:
