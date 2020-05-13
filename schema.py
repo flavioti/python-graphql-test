@@ -1,9 +1,8 @@
 import graphene
-from graphene import ObjectType, String, Schema
-from graphene_sqlalchemy import SQLAlchemyObjectType, SQLAlchemyConnectionField
+from graphene import ObjectType, String
+from graphene_sqlalchemy import SQLAlchemyObjectType
 
 from models import PersonModel, UserModel
-from database import db_session
 
 
 class PersonSchema(SQLAlchemyObjectType):
@@ -28,7 +27,7 @@ class Query(ObjectType):
     people = graphene.List(PersonSchema)
 
     user = graphene.Field(UserSchema, iduser=graphene.Int())
-    users = graphene.List(UserSchema, limit=graphene.Int())
+    users = graphene.List(UserSchema,)  # limit=graphene.Int()
 
     hello = String(name=String(default_value="stranger"))
     goodbye = String()
@@ -44,16 +43,16 @@ class Query(ObjectType):
     def resolve_user(self, info, **args):
         print(info)
         query = UserSchema.get_query(info)
-        iduser = args.get('iduser')
+        iduser = args.get("iduser")
         return query.get(iduser)
 
     def resolve_users(self, info, **kwargs):
         query = UserSchema.get_query(info)
-        limit = args.get('limit')
+        # limit = args.get("limit")
         return query.query_with_argument()
 
-    def user_by_name(self, info, **args)
-        query.
+    # def user_by_name(self, info, **args)
+    #     query.
 
     def resolve_hello(root, info, name):
         return f"Hello {name}!"

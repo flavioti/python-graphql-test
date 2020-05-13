@@ -3,17 +3,16 @@ run:
 	export FLASK_ENV=development
 	flask run
 
-
 test:
 	make codequality
 	python3 -m pytest -v --cov=src
 
 codequality:
-	black src
+	isort *.py src/**/*.py
+	black .
 
 virtualenv:
-	virtualenv --python='/usr/bin/python3' env
-	make installpkgdev
+	virtualenv --python='/usr/bin/python3' .env
 
 installpkgdev:
 	pip install -r requirements-dev.txt

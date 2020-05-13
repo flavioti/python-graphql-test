@@ -1,9 +1,7 @@
-from sqlalchemy import *
 from sqlalchemy import Column, ForeignKey, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import backref, relationship, scoped_session, sessionmaker
+from sqlalchemy.orm import relationship
 
-from database import Base, engine, db_session
+from database import Base, engine
 
 
 class PersonModel(Base):
